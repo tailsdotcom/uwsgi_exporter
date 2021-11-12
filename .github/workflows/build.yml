@@ -1,0 +1,23 @@
+name: Build and Push
+
+on:
+  # publish on pushes to the main branch (image tagged as "latest")
+  push:
+    branches:
+      - master
+
+# workflow tasks
+jobs:
+  generate:
+    name: Generate cross-platform builds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+      - name: Generate build files
+        uses: thatisuday/go-cross-build@v1
+        with:
+            platforms: 'linux/amd64, linux/arm64'
+            package: ''
+            name: 'uwsgi-exporter'
+            dest: 'dist'
