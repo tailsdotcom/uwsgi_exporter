@@ -6,6 +6,11 @@ on:
     branches:
       - master
 
+  # publish on releases (image tagged with git tag)
+  release:
+    types:
+      - created
+
 # workflow tasks
 jobs:
   generate:
